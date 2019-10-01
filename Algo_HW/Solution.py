@@ -4,7 +4,7 @@ class Solution:
         self.comparison_count = 0
 
     def merge_sort(self, p, r):
-	def merge(p, q, r):
+        def merge(p, q, r):
             n1 = q-p+1
             n2 = r-q
             Left = []
@@ -26,43 +26,43 @@ class Solution:
                     self.sorting_array[k] = Right[j]
                     j = j + 1
 
-        if p < r: 
+        if p < r:
             q = int((p+r)/2)
-            self.merge_sort(p, q) 
-            self.merge_sort(q+1, r) 
-            merge(p, q, r) 
-     
+            self.merge_sort(p, q)
+            self.merge_sort(q+1, r)
+            merge(p, q, r)
+
 
     def heap_sort(self):
-	def heapify(A, n, i): 
-	    largest = i 
-    	    left = 2 * i + 1 
-    	    right = 2 * i + 2  
-    	    
-	    self.comparison_count+=1 
-    	    if left < n and A[largest] < A[left]: 
-                largest = left
-	    if left >= n:
-                self.comparison_count-=1
- 
-  	    self.comparison_count+=1
-    	    if right < n and A[largest] < A[right]: 
-                largest = right
-	    if right >= n:
-                self.comparison_count-=1
-    	    if largest != i: 
-                A[i], A[largest] = A[largest], A[i]
-                heapify(A, n, largest)	
-               
-	n = len(self.sorting_array)  
-    	for i in range(n, -1, -1): 
-            heapify(self.sorting_array,n, i) 
+        def buildMaxHeap():
+            for i in range(int(len(self.sorting_array)/2), -1, -1):
+                heapify(i)
+        def heapify(i):
+	    largest = i
+    	left = 2 * i + 1
+    	right = 2 * i + 2
+        n = len(self.sorting_array)
+    	if left <  n:
+            self.comparison_count+=1
+            if self.sorting_array[left] > self.sorting_array[i]:
+                largest = l
+            if right < heap_size:
+                self.comparison_count+=1
+                if self.sorting_array[r] > self.sorting_array[largest]:
+                    largest = right
+            if largest != i:
+                self.sorting_array[i],self.sorting_array[largest] = self.sorting_array[largest],self.sorting_array[i]
+                heapify(largest)
+        buildMaxHeap()
+        n = len(self.sorting_array)
+    	for i in range((len(self.sorting_array)-1), 0, -1):
+            tem = self.sorting_array[0]
+            self.sorting_array[0] = self.sorting_array[i]
+            self.sorting_array[i] = tem
+            heap_size = heap_size - 1
+            heapify(0)
 
-    	for i in range(n-1, 0, -1): 
-            self.sorting_array[i], self.sorting_array[0] = self.sorting_array[0], self.sorting_array[i] 
-            heapify(self.sorting_array,i, 0) 
 
-    
     def insertion_sort(self):
         for i in range(1, len(self.sorting_array)):
             x = self.sorting_array[i]
